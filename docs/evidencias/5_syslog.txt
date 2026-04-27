@@ -1,0 +1,4 @@
+=== 5. BITÁCORA SYSLOG DEL LABORATORIO ===
+Apr 21 23:23:52 server root: Syslog fix test
+Apr 21 23:24:26 server root: Servidor de laboratorio iniciado - Tue Apr 21 23:24:26 America 2026
+Apr 21 23:24:41 server root: Test syslog final exitoso

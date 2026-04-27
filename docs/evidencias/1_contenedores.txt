@@ -1,0 +1,7 @@
+=== 1. ESTADO DE CONTENEDORES ===
+NAMES           IMAGE                       STATUS          PORTS
+server          lab-linux-server            Up 17 minutes   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+client          lab-linux-client            Up 25 minutes   
+grafana         grafana/grafana:12.0.0      Up 25 minutes   0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+prometheus      prom/prometheus:v3.3.1      Up 25 minutes   0.0.0.0:9090->9090/tcp, [::]:9090->9090/tcp
+node-exporter   prom/node-exporter:v1.9.1   Up 25 minutes   0.0.0.0:9100->9100/tcp, [::]:9100->9100/tcp

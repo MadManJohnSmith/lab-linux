@@ -1,0 +1,7 @@
+=== 8. EVIDENCIA DE RESPALDOS Y PERSISTENCIA ===
+total 224K
+-rw-r--r-- 1 root root 111K Apr 21 16:02 backup_20260421_230213.tar.gz
+-rw-r--r-- 1 root root 112K Apr 21 16:02 backup_20260421_230250.tar.gz
+local     lab-linux_grafana_data
+local     lab-linux_prometheus_data
+local     lab-linux_server_backups

@@ -1,0 +1,50 @@
+=== 2. PRUEBA DE CONECTIVIDAD (CLIENTE -> SERVIDOR) ===
+PING server (172.19.0.3) 56(84) bytes of data.
+64 bytes from server.lab-linux_red_laboratorio (172.19.0.3): icmp_seq=1 ttl=64 time=2.71 ms
+64 bytes from server.lab-linux_red_laboratorio (172.19.0.3): icmp_seq=2 ttl=64 time=0.082 ms
+64 bytes from server.lab-linux_red_laboratorio (172.19.0.3): icmp_seq=3 ttl=64 time=0.087 ms
+
+--- server ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2142ms
+rtt min/avg/max/mdev = 0.082/0.959/2.710/1.237 ms
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 172.19.0.3:8080...
+* Connected to server (172.19.0.3) port 8080 (#0)
+> GET / HTTP/1.1
+> Host: server:8080
+> User-Agent: curl/7.81.0
+> Accept: */*
+> 
+* Mark bundle as not supporting multiuse
+* HTTP 1.0, assume close after body
+< HTTP/1.0 200 OK
+< Server: SimpleHTTP/0.6 Python/3.10.12
+< Date: Tue, 21 Apr 2026 23:41:44 GMT
+< Content-type: text/html; charset=utf-8
+< Content-Length: 622
+< 
+  0   622    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Directory listing for /</title>
+</head>
+<body>
+<h1>Directory listing for /</h1>
+<hr>
+<ul>
+<li><a href="backup.log">backup.log</a></li>
+<li><a href="disk_usage.log">disk_usage.log</a></li>
+<li><a href="events.log">events.log</a></li>
+<li><a href="quotas.log">quotas.log</a></li>
+<li><a href="server.log">server.log</a></li>
+<li><a href="syslog">syslog</a></li>
+<li><a href="system_info.log">system_info.log</a></li>
+</ul>
+<hr>
+</body>
+</html>
+{ [622 bytes data]
+100   622  100   622    0     0  29571      0 --:--:-- --:--:-- --:--:-- 29619
+* Closing connection 0

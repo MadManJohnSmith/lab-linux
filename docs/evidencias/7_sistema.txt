@@ -1,0 +1,51 @@
+=== 7. INSPECCIÓN DEL SISTEMA Y KERNEL ===
+=============================================
+2026-04-21 23:19:54 - Inspección del sistema
+=============================================
+
+=== 1. Información del Kernel ===
+Linux server 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+
+=== 2. Versión del Sistema Operativo ===
+PRETTY_NAME="Ubuntu 22.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.5 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+
+=== 3. Proceso de arranque - Procesos activos (PID 1 y servicios) ===
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  6.0  0.0   4364  3328 ?        Ss   23:19   0:00 /bin/bash /opt/lab/scripts/entrypoint.sh
+syslog         9  0.0  0.0 152460  3144 ?        Ssl  23:19   0:00 rsyslogd
+root          17  0.0  0.0   3888  2052 ?        Ss   23:19   0:00 /usr/sbin/cron -P
+daemon        23  0.0  0.0   3864  1280 ?        Ss   23:19   0:00 /usr/sbin/atd
+root          32  0.0  0.0  15432  4304 ?        Ss   23:19   0:00 sshd: /usr/sbin/sshd [listener] 0 of 10-100 startups
+root          36  0.0  0.0   4364  3200 ?        S    23:19   0:00 /bin/bash /opt/lab/scripts/system_info.sh
+root          40  0.0  0.0   7064  2944 ?        R    23:19   0:00 ps aux --sort=pid
+root          41  0.0  0.0   2804  1280 ?        S    23:19   0:00 head -20
+
+=== 4. Niveles de operación (Runlevels / Systemd targets) ===
+Nota: En contenedores Docker, PID 1 es el entrypoint (no systemd/init).
+Los servicios se inician manualmente en el entrypoint.sh:
+  1. cron (tareas programadas)
+  2. atd (tareas de ejecución diferida)
+  3. sshd (acceso remoto SSH)
+  4. rsyslogd (sistema de logging)
+  5. python3 http.server (servicio web en puerto 8080)
+
+Runlevel actual (si disponible):
+/opt/lab/scripts/system_info.sh: line 36: runlevel: command not found
+  runlevel no disponible (contenedor sin init)
+
+=== 5. Servicios activos ===
+ [ + ]  atd
+ [ + ]  cron
+ [ ? ]  hwclock.sh
+ [ - ]  procps

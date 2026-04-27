@@ -1,0 +1,3 @@
+=== 3. ESTADO DE PROMETHEUS TARGETS ===
+node-exporter        node-exporter:9100             up
+prometheus           prometheus:9090                up

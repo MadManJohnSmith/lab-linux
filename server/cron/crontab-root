@@ -1,0 +1,9 @@
+# Minuto Hora DíaMes Mes DíaSemana Comando
+# Respaldo completo diario a las 02:00
+0 2 * * * /opt/lab/scripts/backup.sh >> /var/log/lab/backup.log 2>&1
+# Verificación de uso de disco cada hora
+0 * * * * THRESHOLD=80 PARTITION=/ /opt/lab/scripts/check_disk.sh >> /var/log/lab/disk_usage.log 2>&1
+# Verificación de cuotas cada 6 horas
+0 */6 * * * QUOTA_LIMIT_MB=100 /opt/lab/scripts/check_quotas.sh 2>&1
+# Inspección del sistema diaria a las 03:00
+0 3 * * * /opt/lab/scripts/system_info.sh 2>&1

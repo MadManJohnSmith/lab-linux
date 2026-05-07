@@ -1,30 +1,30 @@
-# 🐧 Linux Lab: Infrastructure as Code & Secure Network Administration
+# Laboratorio Linux: Infraestructura como Código y Administración de Redes Seguras
 
-![Status](https://img.shields.io/badge/Status-Complete-success?style=for-the-badge)
-![Linux](https://img.shields.io/badge/OS-Ubuntu%2022.04-E95420?style=for-the-badge&logo=ubuntu)
-![Docker](https://img.shields.io/badge/Platform-Docker%20Compose-2496ED?style=for-the-badge&logo=docker)
-![Monitoring](https://img.shields.io/badge/Stack-Prometheus%20%26%20Grafana-F46800?style=for-the-badge&logo=grafana)
+![Estado](https://img.shields.io/badge/Estado-Completado-success?style=for-the-badge)
+![SO](https://img.shields.io/badge/SO-Ubuntu%2022.04-E95420?style=for-the-badge&logo=ubuntu)
+![Plataforma](https://img.shields.io/badge/Plataforma-Docker%20Compose-2496ED?style=for-the-badge&logo=docker)
+![Monitoreo](https://img.shields.io/badge/Stack-Prometheus%20y%20Grafana-F46800?style=for-the-badge&logo=grafana)
 
-## 📋 Overview
-This project represents a comprehensive implementation of a **Secure, Automated, and Containerized Linux Network Infrastructure**. Designed for advanced system administration, it leverages Docker and WSL2 to simulate a robust enterprise environment.
+## Descripción General
+Este proyecto representa una implementación integral de una **Infraestructura de Red Linux Segura, Automatizada y Contenedorizada**. Diseñada para la administración avanzada de sistemas, utiliza Docker y WSL2 para simular un entorno empresarial robusto.
 
-The solution integrates critical components of modern systems administration:
-*   **Security & Identity**: Role-based access control (RBAC), password policies, and strict permission schemas.
-*   **Automation**: Custom Bash orchestration for backups, health checks, and service management.
-*   **Observability**: A full metrics stack featuring Prometheus, Grafana, Node Exporter, and cAdvisor.
-*   **Resilience**: Persistent data volumes and redundant backup strategies.
+La solución integra componentes críticos de la administración de sistemas modernos:
+*   **Seguridad e Identidad**: Control de acceso basado en roles (RBAC), políticas de contraseñas y esquemas estrictos de permisos.
+*   **Automatización**: Orquestación mediante scripts de Bash personalizados para respaldos, verificaciones de estado y gestión de servicios.
+*   **Observabilidad**: Un stack completo de métricas que incluye Prometheus, Grafana, Node Exporter y cAdvisor.
+*   **Resiliencia**: Volúmenes de datos persistentes y estrategias de respaldo redundantes.
 
 ---
 
-## 🏗️ Architecture
+## Arquitectura
 
-The infrastructure is organized into isolated networks to ensure security and traffic separation.
+La infraestructura está organizada en redes aisladas para garantizar la seguridad y la separación del tráfico.
 
 ```mermaid
 graph TD
     subgraph "red_laboratorio (172.18.0.0/16)"
-        Server[Server - Ubuntu 22.04]
-        Client[Client - Connectivity Tester]
+        Server[Servidor - Ubuntu 22.04]
+        Client[Cliente - Probador de Conectividad]
     end
 
     subgraph "monitoring_network"
@@ -37,135 +37,135 @@ graph TD
     Server -- Logs --> Client
     Prometheus -- Scrapes --> NodeExp
     Prometheus -- Scrapes --> cAdvisor
-    Grafana -- Visualizes --> Prometheus
-    Server -- Mounts --> HostData[(Host File System)]
+    Grafana -- Visualiza --> Prometheus
+    Server -- Monta --> HostData[(Sistema de Archivos del Host)]
 ```
 
-### Core Components:
-1.  **Server (Ubuntu 22.04)**: The central node managing users, logs, scheduled tasks, and a secure web-based log viewer.
-2.  **Client**: A dedicated node for network validation and service consumption testing.
-3.  **Observability Stack**: Real-time monitoring of host and container performance.
+### Componentes Principales:
+1.  **Servidor (Ubuntu 22.04)**: El nodo central que gestiona usuarios, registros, tareas programadas y un visor de logs seguro basado en web.
+2.  **Cliente**: Un nodo dedicado para la validación de red y pruebas de consumo de servicios.
+3.  **Stack de Observabilidad**: Monitoreo en tiempo real del rendimiento del host y de los contenedores.
 
 ---
 
-## 🎯 Use Cases
-This laboratory is ideal for:
-*   **Educational Environments**: A safe, sandbox environment for students to practice Linux administration (users, permissions, cron, backups) without risking host system stability.
-*   **DevSecOps Prototyping**: Testing automation scripts and security policies in a containerized CI/CD-like pipeline before deploying to production servers.
-*   **Observability Training**: Learning how to configure Prometheus scrapers and design Grafana dashboards for system and container metrics.
-*   **Network Service Testing**: Simulating client-server architectures, firewall rules, and service availability in isolated Docker networks.
+## Casos de Uso
+Este laboratorio es ideal para:
+*   **Entornos Educativos**: Un entorno seguro de pruebas (sandbox) para que los estudiantes practiquen la administración de Linux (usuarios, permisos, cron, respaldos) sin arriesgar la estabilidad del sistema host.
+*   **Prototipado DevSecOps**: Prueba de scripts de automatización y políticas de seguridad en un pipeline contenedorizado similar a CI/CD antes de desplegar en servidores de producción.
+*   **Entrenamiento en Observabilidad**: Aprendizaje sobre cómo configurar recolectores de Prometheus y diseñar tableros de Grafana para métricas de sistema y contenedores.
+*   **Pruebas de Servicios de Red**: Simulación de arquitecturas cliente-servidor, reglas de firewall y disponibilidad de servicios en redes Docker aisladas.
 
 ---
 
-## 🚀 Quick Start
+## Inicio Rápido
 
-### Prerequisites
-*   **Docker Desktop** (WSL2 Backend) or **Docker Engine**.
+### Requisitos Previos
+*   **Docker Desktop** (Backend WSL2) o **Docker Engine**.
 *   **Docker Compose** v2.0+.
 
-### Deployment
+### Despliegue
 ```bash
-# 1. Clone and enter the directory
+# 1. Clonar y entrar al directorio
 git clone <repository-url>
 cd lab-linux
 
-# 2. Build and launch the infrastructure
+# 2. Construir y lanzar la infraestructura
 docker compose up -d --build
 
-# 3. Verify services are healthy
+# 3. Verificar que los servicios estén saludables
 docker compose ps
 ```
 
 ---
 
-## 🛠️ Usage & Administration Guide
+## Guía de Uso y Administración
 
-### 1. User & Security Management
-The server comes pre-configured with a `labadmin` user. To manage additional users:
+### 1. Gestión de Usuarios y Seguridad
+El servidor viene preconfigurado con un usuario `labadmin`. Para gestionar usuarios adicionales:
 
-*   **Access the Server Shell**:
+*   **Acceder a la terminal del servidor**:
     ```bash
     docker exec -it server bash
     ```
-*   **Create a New User**:
+*   **Crear un nuevo usuario**:
     ```bash
     useradd -m -s /bin/bash usuario1
     echo "usuario1:Password123!" | chpasswd
     ```
-*   **Check Password Expiration**:
+*   **Verificar la expiración de la contraseña**:
     ```bash
     chage -l labadmin
     ```
 
-### 2. Manual Automation Tasks
-While tasks are automated via `cron`, you can trigger them manually for testing:
+### 2. Tareas Manuales de Automatización
+Aunque las tareas están automatizadas vía `cron`, puedes activarlas manualmente para pruebas:
 
-*   **Trigger a Backup**:
+*   **Ejecutar un Respaldo**:
     ```bash
     docker exec server /opt/lab/scripts/backup.sh
-    # Check the result in the host: ls ./data/backups
+    # Verificar el resultado en el host: ls ./data/backups
     ```
-*   **Verify Disk Quotas**:
+*   **Verificar Cuotas de Disco**:
     ```bash
     docker exec server /opt/lab/scripts/check_quotas.sh
     ```
 
-### 3. Log Inspection & Auditing
-There are three ways to audit the system:
-1.  **Web Viewer**: Navigate to `http://localhost:8080` to see a listing of all `.log` files.
-2.  **Syslog**: Use `docker exec server cat /var/log/lab/syslog` to see system events.
-3.  **Host Persistence**: Check the `./data/logs/` directory in your project folder.
+### 3. Inspección y Auditoría de Logs
+Hay tres formas de auditar el sistema:
+1.  **Visor Web**: Navega a `http://localhost:8080` para ver un listado de todos los archivos `.log`.
+2.  **Syslog**: Usa `docker exec server cat /var/log/lab/syslog` para ver los eventos del sistema.
+3.  **Persistencia en el Host**: Revisa el directorio `./data/logs/` en la carpeta de tu proyecto.
 
 ---
 
-## 📊 Monitoring & Observability
+## Monitoreo y Observabilidad
 
-The project includes a pre-provisioned monitoring stack that automatically discovers all infrastructure components.
+El proyecto incluye un stack de monitoreo pre-provisionado que descubre automáticamente todos los componentes de la infraestructura.
 
-### 📈 Metrics Dashboards (Grafana)
-1.  Open `http://localhost:3000` (Login: `admin` / `admin`).
-2.  **Explore**: Use the "Explore" tab to query metrics like `node_memory_MemFree_bytes` or `container_cpu_usage_seconds_total`.
-3.  **Visualizations**: Create custom dashboards to track the health of the `server` and `client` containers.
+### Tableros de Métricas (Grafana)
+1.  Abre `http://localhost:3000` (Usuario: `admin` / Contraseña: `admin`).
+2.  **Explorar**: Usa la pestaña "Explore" para consultar métricas como `node_memory_MemFree_bytes` o `container_cpu_usage_seconds_total`.
+3.  **Visualizaciones**: Crea tableros personalizados para seguir la salud de los contenedores `server` y `client`.
 
-### 🔍 Service Discovery (Prometheus)
-Navigate to `http://localhost:9090/targets` to verify that the following agents are being scraped:
-*   `node-exporter`: Host-level hardware metrics.
-*   `cadvisor`: Container-level resource usage.
-*   `prometheus`: Internal metrics.
-
----
-
-## ✅ Evidence of Operation
-The system has been validated against the following criteria:
-
-*   **Infrastructure Health**: All 5 containers (`server`, `client`, `prometheus`, `grafana`, `node-exporter`) report `Up` status.
-*   **Network Connectivity**: Verified low-latency communication (avg 0.08ms) between nodes.
-*   **Resilience**: Verified that data in `/home` and `/var/log` survives a `docker compose down && docker compose up`.
-*   **Security Audit**: Verified that sensitive directories like `/var/backups` have `700` permissions.
+### Descubrimiento de Servicios (Prometheus)
+Navega a `http://localhost:9090/targets` para verificar que los siguientes agentes están siendo monitoreados:
+*   `node-exporter`: Métricas de hardware a nivel de host.
+*   `cadvisor`: Uso de recursos a nivel de contenedor.
+*   `prometheus`: Métricas internas.
 
 ---
 
-## 📂 Project Structure
+## Evidencia de Operación
+El sistema ha sido validado contra los siguientes criterios:
+
+*   **Salud de la Infraestructura**: Los 5 contenedores (`server`, `client`, `prometheus`, `grafana`, `node-exporter`) reportan estado `Up`.
+*   **Conectividad de Red**: Comunicación de baja latencia verificada (promedio 0.08ms) entre nodos.
+*   **Resiliencia**: Se verificó que los datos en `/home` y `/var/log` sobreviven a un `docker compose down && docker compose up`.
+*   **Auditoría de Seguridad**: Se verificó que los directorios sensibles como `/var/backups` tienen permisos `700`.
+
+---
+
+## Estructura del Proyecto
 ```text
 ~/lab-linux/
-├── docker-compose.yml       # Infrastructure orchestration
+├── docker-compose.yml       # Orquestación de la infraestructura
 ├── server/
-│   ├── Dockerfile           # Custom Ubuntu image (rsyslog, cron, ssh)
-│   ├── scripts/             # Admin (backup, quotas, sysinfo)
-│   └── cron/                # Root crontab configuration
+│   ├── Dockerfile           # Imagen personalizada de Ubuntu (rsyslog, cron, ssh)
+│   ├── scripts/             # Administración (respaldos, cuotas, sysinfo)
+│   └── cron/                # Configuración de crontab de root
 ├── client/
-│   └── Dockerfile           # Ubuntu-based tester (curl, ping)
+│   └── Dockerfile           # Probador basado en Ubuntu (curl, ping)
 ├── monitoring/
-│   ├── prometheus/          # Scrape & retention configs
-│   └── grafana/             # Auto-provisioned datasources
-└── data/                    # Bind mounts for persistent logs & backups
+│   ├── prometheus/          # Configuraciones de recolección y retención
+│   └── grafana/             # Fuentes de datos auto-provisionadas
+└── data/                    # Montajes vinculados para logs persistentes y respaldos
 ```
 
 ---
 
-## 🎓 Conclusion
-This project demonstrates that modern Linux administration is moving towards **Immutable Infrastructure**. By defining the server state via Dockerfiles and scripts, we ensure that the entire network environment is reproducible, secure, and easy to monitor.
+## Conclusión
+Este proyecto demuestra que la administración moderna de Linux se está moviendo hacia la **Infraestructura Inmutable**. Al definir el estado del servidor a través de Dockerfiles y scripts, aseguramos que todo el entorno de red sea reproducible, seguro y fácil de monitorear.
 
-**Course**: Administración de Redes  
-**Status**: Final Delivery Ready  
-**Date**: April 2026
+**Curso**: Administración de Redes  
+**Estado**: Listo para Entrega Final  
+**Fecha**: Abril 2026

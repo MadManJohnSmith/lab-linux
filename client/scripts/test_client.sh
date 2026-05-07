@@ -5,7 +5,7 @@ SERVER_PORT=${SERVER_PORT:-8080}
 
 echo "[CLIENTE] Probando conectividad hacia $SERVER_HOST:$SERVER_PORT"
 
-# Wait for server to be ready
+# Esperar a que el servidor esté listo
 echo "[CLIENTE] Esperando a que el servidor esté listo..."
 for i in $(seq 1 30); do
     if curl -s -o /dev/null -w "%{http_code}" "http://$SERVER_HOST:$SERVER_PORT" 2>/dev/null | grep -q "200"; then
@@ -30,6 +30,6 @@ fi
 echo ""
 echo "[CLIENTE] Pruebas finalizadas."
 
-# Keep container running for inspection
+# Mantener el contenedor en ejecución para inspección
 echo "[CLIENTE] Contenedor en espera para inspección..."
 sleep infinity

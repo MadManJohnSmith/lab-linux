@@ -18,23 +18,23 @@ RUN apt-get update && \
     mkdir -p /var/run/sshd /var/log/lab /var/backups && \
     rm -rf /var/lib/apt/lists/*
 
-# Configure rsyslog: disable imklog (not available in containers), add lab logging
+# Configurar rsyslog: deshabilitar imklog (no disponible en contenedores), añadir logs del laboratorio
 RUN sed -i '/imklog/s/^/#/' /etc/rsyslog.conf && \
     echo 'local0.*    /var/log/lab/syslog' >> /etc/rsyslog.d/50-lab.conf
 
-# Copy scripts and cron
+# Copiar scripts y configuración de cron
 COPY scripts/ /opt/lab/scripts/
 COPY cron/crontab-root /var/spool/cron/crontabs/root
 RUN chmod 600 /var/spool/cron/crontabs/root && \
     chmod +x /opt/lab/scripts/*.sh
 
-# Admin user for the lab
+# Usuario administrador para el laboratorio
 RUN useradd -m -s /bin/bash labadmin && \
     echo "labadmin:Lab@2026!" | chpasswd && \
     usermod -aG sudo labadmin
 
-# Expose lab service port
+# Exponer el puerto de servicio del laboratorio
 EXPOSE 8080
 
-# Use entrypoint script
+# Usar el script de entrada (entrypoint)
 ENTRYPOINT ["/opt/lab/scripts/entrypoint.sh"]

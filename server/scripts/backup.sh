@@ -13,7 +13,7 @@ tar -czf "$BACKUP_FILE" \
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Respaldo generado: $BACKUP_FILE" \
     >> /var/log/lab/backup.log
 
-# Copy to host-mounted backup directory (remote backup equivalent)
+# Copiar al directorio de respaldo montado en el host (equivalente a respaldo remoto)
 if [ -d /var/backups_host ]; then
     cp "$BACKUP_FILE" /var/backups_host/
     echo "$(date '+%Y-%m-%d %H:%M:%S') - Respaldo copiado a /var/backups_host/" \
